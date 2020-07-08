@@ -34,14 +34,13 @@ def hh_parse(base_url, headers):
                 text1 = div.find('div', attrs={'data-qa': 'vacancy-serp__vacancy_snippet_responsibility'}).text
                 text2 = div.find('div', attrs={'data-qa': 'vacancy-serp__vacancy_snippet_requirement'}).text
                 content = text1 + '  ' + text2
-                """request2 = session.get(href, headers=headers)
+                request2 = session.get(href, headers=headers)
+                description = 'None'
                 if request2.status_code == 200:
                     soup2 = bs(request2.content, 'html.parser')
-                    divs2 = soup.find_all('div', attrs={'data-qa': 'vacancy-serp__vacancy'})
-                    for div2 in divs2:"""
+                    description = soup2.find('div', attrs={'data-qa': 'vacancy-description'}).text
 
-
-                all_txt = [title, compensation, company, content, href]
+                all_txt = [title, description, compensation, company, content, href]
                 jobs.append(all_txt)
             zero = int(zero)
             zero += 1
@@ -65,26 +64,29 @@ def hh_parse(base_url, headers):
 
         # Настройка ширины колонок
         worksheet.set_column(0, 0, 35)  # A  https://xlsxwriter.readthedocs.io/worksheet.html#set_column
-        worksheet.set_column(1, 1, 20)  # B
-        worksheet.set_column(2, 2, 40)  # C
-        worksheet.set_column(3, 3, 135)  # D
-        worksheet.set_column(4, 4, 45)  # E
+        worksheet.set_column(1, 1, 135) # B
+        worksheet.set_column(2, 2, 20)  # C
+        worksheet.set_column(3, 3, 40)  # D
+        worksheet.set_column(4, 4, 135)  # E
+        worksheet.set_column(5, 5, 45)  # F
 
         worksheet.write('A1', 'Наименование', bold)
-        worksheet.write('B1', 'Зарплата', bold)
-        worksheet.write('C1', 'Компания', bold)
-        worksheet.write('D1', 'Описание', bold)
-        worksheet.write('E1', 'Ссылка', bold)
+        worksheet.write('B1', 'Полное описание', bold)
+        worksheet.write('C1', 'Зарплата', bold)
+        worksheet.write('D1', 'Компания', bold)
+        worksheet.write('E1', 'Описание', bold)
+        worksheet.write('F1', 'Ссылка', bold)
 
         row = 1
         col = 0
         for i in jobs:
             worksheet.write_string(row, col, i[0], center_V)
-            worksheet.write_string(row, col + 1, i[1], center_H_V)
+            worksheet.write_string(row, col + 1, i[1], cell_wrap)
             worksheet.write_string(row, col + 2, i[2], center_H_V)
-            worksheet.write_string(row, col + 3, i[3], cell_wrap)
+            worksheet.write_string(row, col + 3, i[3], center_H_V)
+            worksheet.write_string(row, col + 4, i[4], cell_wrap)
             # worksheet.write_url (row, col + 4, i[4], center_H_V)
-            worksheet.write_url(row, col + 4, i[4])
+            worksheet.write_url(row, col + 5, i[5])
             row += 1
 
         print('OK')
