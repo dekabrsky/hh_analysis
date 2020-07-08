@@ -12,6 +12,34 @@ jobs = []
 
 def hh_parse(base_url, headers):
     zero = 0
+    workbook = xlsxwriter.Workbook('Vacancy_2.xlsx')
+    worksheet = workbook.add_worksheet()
+    # Добавим стили форматирования
+    bold = workbook.add_format({'bold': 1})
+    bold.set_align('center')
+    center_H_V = workbook.add_format()
+    center_H_V.set_align('center')
+    center_H_V.set_align('vcenter')
+    center_V = workbook.add_format()
+    center_V.set_align('vcenter')
+    cell_wrap = workbook.add_format()
+    cell_wrap.set_text_wrap()
+
+    # Настройка ширины колонок
+    worksheet.set_column(0, 0, 35)  # A  https://xlsxwriter.readthedocs.io/worksheet.html#set_column
+    worksheet.set_column(1, 1, 135)  # B
+    worksheet.set_column(2, 2, 20)  # C
+    worksheet.set_column(3, 3, 40)  # D
+    worksheet.set_column(4, 4, 135)  # E
+    worksheet.set_column(5, 5, 45)  # F
+
+    worksheet.write('A1', 'Наименование', bold)
+    worksheet.write('B1', 'Полное описание', bold)
+    worksheet.write('C1', 'Зарплата', bold)
+    worksheet.write('D1', 'Компания', bold)
+    worksheet.write('E1', 'Описание', bold)
+    worksheet.write('F1', 'Ссылка', bold)
+
     while pages > zero:
         zero = str(zero)
         session = requests.Session()
@@ -39,7 +67,6 @@ def hh_parse(base_url, headers):
                 if request2.status_code == 200:
                     soup2 = bs(request2.content, 'html.parser')
                     description = soup2.find('div', attrs={'data-qa': 'vacancy-description'}).text
-
                 all_txt = [title, description, compensation, company, content, href]
                 jobs.append(all_txt)
             zero = int(zero)
@@ -49,33 +76,6 @@ def hh_parse(base_url, headers):
             print('error')
 
         # Запись в Excel файл
-        workbook = xlsxwriter.Workbook('Vacancy_2.xlsx')
-        worksheet = workbook.add_worksheet()
-        # Добавим стили форматирования
-        bold = workbook.add_format({'bold': 1})
-        bold.set_align('center')
-        center_H_V = workbook.add_format()
-        center_H_V.set_align('center')
-        center_H_V.set_align('vcenter')
-        center_V = workbook.add_format()
-        center_V.set_align('vcenter')
-        cell_wrap = workbook.add_format()
-        cell_wrap.set_text_wrap()
-
-        # Настройка ширины колонок
-        worksheet.set_column(0, 0, 35)  # A  https://xlsxwriter.readthedocs.io/worksheet.html#set_column
-        worksheet.set_column(1, 1, 135) # B
-        worksheet.set_column(2, 2, 20)  # C
-        worksheet.set_column(3, 3, 40)  # D
-        worksheet.set_column(4, 4, 135)  # E
-        worksheet.set_column(5, 5, 45)  # F
-
-        worksheet.write('A1', 'Наименование', bold)
-        worksheet.write('B1', 'Полное описание', bold)
-        worksheet.write('C1', 'Зарплата', bold)
-        worksheet.write('D1', 'Компания', bold)
-        worksheet.write('E1', 'Описание', bold)
-        worksheet.write('F1', 'Ссылка', bold)
 
         row = 1
         col = 0
