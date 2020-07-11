@@ -58,7 +58,7 @@ def make_xls(skills, k_skills):
     sheet = workbook.add_worksheet('Обработанное')
     sheet.set_column(0, 0, 40)  # A
     sheet.set_column(1, 1, 20)  # B
-    sheet.set_column(2, 2, 135)  # C
+    sheet.set_column(2, 2, 50)  # C
     sheet.set_column(3, 3, 40)  # D
     sheet.set_column(4, 4, 20)  # E
     sheet.write(0, 0, 'Навык ENG')
