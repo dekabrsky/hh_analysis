@@ -7,7 +7,7 @@ import regex as re
 def get_vacancies():
     p = dict(text="Программист", area="1261", per_page="100", page="0")
     pages = list()
-    count_pages = 3
+    count_pages = 9
 
     for i in range(count_pages):
         p['page'] = i
