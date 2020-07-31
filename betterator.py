@@ -5,7 +5,7 @@ import xlsxwriter
 
 def get_soft_skills():
     skills = {}
-    workbook = xlrd.open_workbook('SoftSkillsDataset.xlsx')
+    workbook = xlrd.open_workbook('xls/SoftSkillsDataset.xlsx')
     worksheet = workbook.sheet_by_index(0)
     row = 1
     while True:
@@ -18,7 +18,7 @@ def get_soft_skills():
 
 
 def make_xls(result):
-    workbook = xlsxwriter.Workbook('SoftSkillsDatasetSmall.xlsx')
+    workbook = xlsxwriter.Workbook('xls/SoftSkillsDatasetSmall.xlsx')
     sheet = workbook.add_worksheet('Обработанное')
     sheet.set_column(0, 0, 100)  # A
     sheet.set_column(1, 1, 40)  # B

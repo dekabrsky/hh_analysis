@@ -5,7 +5,7 @@ import xlsxwriter
 
 def read_xls():
     skills = {}
-    workbook = xlrd.open_workbook('Skills.xlsx')
+    workbook = xlrd.open_workbook('xls/Skills.xlsx')
     worksheet = workbook.sheet_by_index(0)
     row = 1
     while True:
@@ -54,7 +54,7 @@ def compress_1c(k_skills):
 
 
 def make_xls(skills, k_skills):
-    workbook = xlsxwriter.Workbook('Skills_Обр.xlsx')
+    workbook = xlsxwriter.Workbook('xls/Skills_Обр.xlsx')
     sheet = workbook.add_worksheet('Обработанное')
     sheet.set_column(0, 0, 40)  # A
     sheet.set_column(1, 1, 20)  # B

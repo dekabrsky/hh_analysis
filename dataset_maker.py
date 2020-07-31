@@ -23,7 +23,7 @@ def get_soft_skills():
 
 def get_original_text():
     records = {}
-    workbook = xlrd.open_workbook('Vacancies.xlsx')
+    workbook = xlrd.open_workbook('xls/Vacancies.xlsx')
     worksheet = workbook.sheet_by_index(0)
     row = 1
     i = 0
@@ -56,7 +56,7 @@ def make_result(skills, records):
 
 
 def make_xls(result):
-    workbook = xlsxwriter.Workbook('SoftSkillsDataset.xlsx')
+    workbook = xlsxwriter.Workbook('xls/SoftSkillsDataset.xlsx')
     sheet = workbook.add_worksheet('Обработанное')
     sheet.set_column(0, 0, 100)  # A
     sheet.set_column(1, 1, 40)  # B

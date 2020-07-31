@@ -12,7 +12,7 @@ jobs = []
 
 def hh_parse(base_url, headers):
     zero = 0
-    workbook = xlsxwriter.Workbook('Vacancy_2.xlsx')
+    workbook = xlsxwriter.Workbook('xls/Vacancy_2.xlsx')
     worksheet = workbook.add_worksheet()
     # Добавим стили форматирования
     bold = workbook.add_format({'bold': 1})

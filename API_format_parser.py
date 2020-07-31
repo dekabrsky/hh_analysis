@@ -24,7 +24,7 @@ def get_vacancies():
 
 
 def make_xls(full_vacancies, skills):
-    workbook = xlsxwriter.Workbook('Vacancies.xlsx')
+    workbook = xlsxwriter.Workbook('xls/Vacancies.xlsx')
     worksheet = workbook.add_worksheet()
     bold = workbook.add_format({'bold': 1})
     bold.set_align('center')
@@ -90,7 +90,7 @@ def get_skills_dict(full_vacancies):
 
 
 def fill_comps(skills):
-    workbook = xlsxwriter.Workbook('Skills.xlsx')
+    workbook = xlsxwriter.Workbook('xls/Skills.xlsx')
     worksheet = workbook.add_worksheet()
     bold = workbook.add_format({'bold': 1})
     bold.set_align('center')

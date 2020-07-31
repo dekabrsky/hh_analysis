@@ -2,7 +2,7 @@ import xlrd
 import xlsxwriter
 
 hard_skills = {}
-workbook = xlrd.open_workbook('input2.xlsx')
+workbook = xlrd.open_workbook('xls/input2.xlsx')
 worksheet = workbook.sheet_by_index(0)
 row = 1
 while True:
@@ -45,7 +45,7 @@ while True:
 
 soft_skills = {k: v for k, v in reversed(sorted(soft_skills.items(), key=lambda item: item[1]))}"""
 
-workbook = xlsxwriter.Workbook('skills_by_count_2.xlsx')
+workbook = xlsxwriter.Workbook('xls/skills_by_count_2.xlsx')
 worksheet = workbook.add_worksheet()
 bold = workbook.add_format({'bold': 1})
 bold.set_align('center')

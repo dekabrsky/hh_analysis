@@ -8,7 +8,7 @@ headers = {'accept': '*/*',
            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}
 
 skills = []
-workbook = xlrd.open_workbook('SoftSkills_withoutOriginalText.xlsx')
+workbook = xlrd.open_workbook('xls/SoftSkills_withoutOriginalText.xlsx')
 worksheet = workbook.sheet_by_index(0)
 row = 1
 while True:
@@ -34,7 +34,7 @@ for key in skills:
                 for li in lis:
                     skills_by_root[key].append(li.text)
 
-workbook = xlsxwriter.Workbook('SkillsByRoot.xlsx')
+workbook = xlsxwriter.Workbook('xls/SkillsByRoot.xlsx')
 worksheet = workbook.add_worksheet()
 x = 0
 for skill in skills_by_root.items():

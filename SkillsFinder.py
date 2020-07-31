@@ -48,7 +48,7 @@ class Record:
 
 
 sbr = {}
-workbook = xlrd.open_workbook('SkillsByRoot.xlsx')
+workbook = xlrd.open_workbook('xls/SkillsByRoot.xlsx')
 worksheet = workbook.sheet_by_index(0)
 row = 0
 while True:
@@ -61,7 +61,7 @@ while True:
         break
 
 hs_list = []
-workbook = xlrd.open_workbook('Skills_Обр.xlsx')
+workbook = xlrd.open_workbook('xls/Skills_Обр.xlsx')
 worksheet = workbook.sheet_by_index(0)
 row = 0
 while True:
@@ -73,7 +73,7 @@ while True:
         break
 
 records = []
-workbook = xlrd.open_workbook('Vacancies.xlsx')
+workbook = xlrd.open_workbook('xls/Vacancies.xlsx')
 worksheet = workbook.sheet_by_index(0)
 row = 1
 while True:
@@ -89,7 +89,7 @@ while True:
     except:
         break
 
-workbook = xlsxwriter.Workbook('Vacancies_3.xlsx')
+workbook = xlsxwriter.Workbook('xls/Vacancies_3.xlsx')
 worksheet = workbook.add_worksheet()
 bold = workbook.add_format({'bold': 1})
 bold.set_align('center')
